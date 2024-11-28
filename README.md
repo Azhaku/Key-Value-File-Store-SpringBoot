@@ -27,10 +27,9 @@ This project implements a **Key-Value Data Store** service with the ability to p
 
 ### Clone the repository
 
-git clone https://github.com/yourusername/kvstore-project.git cd kvstore-project
+git clone [https://github.com/yourusername/kvstore-project.git](https://github.com/Azhaku/Key-Value-File-Store-SpringBoot.git)
 
-markdown
-Copy code
+
 
 
 
@@ -38,17 +37,12 @@ Copy code
 
 1. **Build the project**:
 
-mvn clean install
-
-markdown
-Copy code
+`mvn clean install`
 
 2. **Run the application**:
 
-mvn spring-boot:run
+`mvn spring-boot:run`
 
-bash
-Copy code
 
 The application will run on `http://localhost:8100`
 
@@ -60,7 +54,7 @@ You can test the following API endpoints using **Postman** or **curl**:
 - **Read Key-Value Pair**: `GET /read?key=key1`
 - **Delete Key-Value Pair**: `DELETE /delete?key=key1`
 - **Batch Create Key-Value Pairs**: `POST /batch-create` with a JSON body containing multiple key-value pairs.
-- 
+ 
 ### Example Commands
 
 # Create a key-value pair
