@@ -78,8 +78,8 @@ curl "http://localhost:8080/read?key=testKey"
 - Spring Boot
 - Gson (for JSON serialization)
 - SLF4J and Logback (for logging)
-- Operating System Compatibility:
-Works on Windows, Linux, and macOS.
+
+Operating System Compatibility: Works on Windows, Linux, and macOS.
 
 - Ensure the application has write permissions for the kvstore.json file.
 - File paths: The default file path is kvstore.json, configurable via application.properties.
