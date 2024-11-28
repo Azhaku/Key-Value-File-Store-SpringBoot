@@ -64,7 +64,7 @@ curl -X POST "http://localhost:8100/create?key=key1&value=value1&ttl=60"
 curl "http://localhost:8100/read?key=key1"
 
 # Delete a key-value pair
- curl -X DELETE "http://localhost:8100/delete?key=testKey"
+ curl -X DELETE "http://localhost:8100/delete?key=key1"
 
 
 
