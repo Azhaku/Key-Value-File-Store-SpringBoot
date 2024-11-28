@@ -42,6 +42,3 @@ src ├── main │ └── java │ └── com/example/SpringProject1/S
 - The **KvEntry** class holds each key-value pair and its optional TTL value.
 - This service is designed for simplicity and scalability, allowing easy extension for additional features, such as more complex expiration policies or integration with databases.
 
-## License
-
-MIT License
