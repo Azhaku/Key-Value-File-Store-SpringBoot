@@ -27,7 +27,7 @@ This project implements a **Key-Value Data Store** service with the ability to p
 
 ### Clone the repository
 
-git clone [https://github.com/yourusername/kvstore-project.git](https://github.com/Azhaku/Key-Value-File-Store-SpringBoot.git)
+git clone https://github.com/Azhaku/Key-Value-File-Store-SpringBoot.git
 
 
 
