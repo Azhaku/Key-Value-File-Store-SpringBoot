@@ -1,44 +1,83 @@
-# KvStore Service
+# Key-Value Data Store
 
 ## Overview
 
-The **KvStore Service** is a simple, persistent key-value store service developed using Spring Boot. It allows you to manage key-value pairs with automatic expiration and file persistence. The data is stored in a JSON file, ensuring that the key-value pairs are maintained even after the application restarts.
+This project implements a **Key-Value Data Store** service with the ability to persist data and support optional expiration (TTL). Built using **Spring Boot**, the service allows for operations such as creating, reading, deleting, and batch inserting key-value pairs. It uses a JSON file for data persistence and handles TTL to automatically remove expired entries.
 
-This service supports operations such as adding, retrieving, and deleting key-value pairs. Additionally, it provides a batch operation to add multiple entries at once. The keys can also have an expiration time (TTL) after which they are automatically removed.
+## Features
 
-## Components
+- **Create**: Add a new key-value pair with an optional TTL (time-to-live).
+- **Read**: Retrieve the value for a given key.
+- **Delete**: Remove a key-value pair.
+- **Batch Create**: Add multiple key-value pairs in one operation.
+- **TTL Support**: Key-value pairs can expire after a defined TTL.
+- **Persistence**: Data is saved to and loaded from a JSON file, ensuring persistence across application restarts.
 
-### 1. **KvStoreService**
+## Setup and Running the Project
 
-The main service class that handles all key-value store operations:
+### Prerequisites
 
-- **create**: Adds a new key-value pair to the store. If a key already exists, it returns an error message.
-- **read**: Retrieves the value associated with a key. It also checks if the key has expired based on the TTL (time-to-live) and removes expired keys.
-- **delete**: Deletes a specific key-value pair from the store.
-- **batchCreate**: Adds multiple key-value pairs at once. It also checks for size limits and key uniqueness before adding.
+- **Java 8+**
+- **Maven**
 
-### 2. **FileUtil**
+### Clone the repository
 
-A utility class for handling file I/O operations:
+git clone https://github.com/yourusername/kvstore-project.git cd kvstore-project
 
-- **loadFromFile**: Reads the key-value store data from a JSON file and loads it into memory (map).
-- **saveToFile**: Saves the key-value pairs in the store to the JSON file to ensure data persistence.
+markdown
+Copy code
 
-### 3. **KvEntry**
+### Build and Run
 
-A model class that represents an individual key-value pair, which may optionally include a TTL (time-to-live) expiration date. 
+1. **Build the project**:
 
-## Project Structure
+mvn clean install
 
-The project consists of the following main components:
+markdown
+Copy code
 
-src ├── main │ └── java │ └── com/example/SpringProject1/Service/KvStoreService.java # Handles key-value store operations │ └── com/example/SpringProject1/FileUtill/FileUtil.java # File operations for saving/loading data ├── resources │ └── application.properties # Configuration file for setting properties
+2. **Run the application**:
 
+mvn spring-boot:run
 
-## Project Explanation
+bash
+Copy code
 
-- The **KvStoreService** manages the business logic of the key-value store. It ensures the persistence and expiration management of key-value pairs.
-- **FileUtil** is responsible for reading and writing data to and from a JSON file, ensuring data persists across application restarts.
-- The **KvEntry** class holds each key-value pair and its optional TTL value.
-- This service is designed for simplicity and scalability, allowing easy extension for additional features, such as more complex expiration policies or integration with databases.
+The application will run on `http://localhost:8080` by default.
 
+### Testing the API
+
+You can test the following API endpoints using **Postman** or **curl**:
+
+- **Create Key-Value Pair**: `POST /create?key=yourKey&value=yourValue&ttl=60`
+- **Read Key-Value Pair**: `GET /read?key=yourKey`
+- **Delete Key-Value Pair**: `DELETE /delete?key=yourKey`
+- **Batch Create Key-Value Pairs**: `POST /batch-create` with a JSON body containing multiple key-value pairs.
+
+### Example Commands
+
+# Create a key-value pair
+curl -X POST "http://localhost:8080/create?key=testKey&value=testValue&ttl=60"
+
+# Read a key-value pair
+curl "http://localhost:8080/read?key=testKey"
+
+# Delete a key-value pair
+- curl -X DELETE "http://localhost:8080/delete?key=testKey"
+# Design Decisions
+- Persistence: Data is saved in a JSON file for easy storage and retrieval using Gson.
+- TTL: Key-value pairs have an optional TTL, and expired entries are automatically removed.
+- Concurrency: Uses ConcurrentHashMap for thread-safe in-memory storage.
+- Logging: Uses SLF4J and Logback for logging.
+- Dependencies and Limitations
+  
+## Dependencies:
+
+- Spring Boot
+- Gson (for JSON serialization)
+- SLF4J and Logback (for logging)
+- Operating System Compatibility:
+Works on Windows, Linux, and macOS.
+
+- Ensure the application has write permissions for the kvstore.json file.
+- File paths: The default file path is kvstore.json, configurable via application.properties.
