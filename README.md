@@ -63,13 +63,15 @@ curl -X POST "http://localhost:8080/create?key=testKey&value=testValue&ttl=60"
 curl "http://localhost:8080/read?key=testKey"
 
 # Delete a key-value pair
-- curl -X DELETE "http://localhost:8080/delete?key=testKey"
+ curl -X DELETE "http://localhost:8080/delete?key=testKey"
 # Design Decisions
-- Persistence: Data is saved in a JSON file for easy storage and retrieval using Gson.
-- TTL: Key-value pairs have an optional TTL, and expired entries are automatically removed.
-- Concurrency: Uses ConcurrentHashMap for thread-safe in-memory storage.
-- Logging: Uses SLF4J and Logback for logging.
-- Dependencies and Limitations
+- **Persistence**: Data is saved in a JSON file for easy storage and retrieval using Gson.
+- **TTL**: Key-value pairs have an optional TTL, and expired entries are automatically removed.
+- **Concurrency**: Uses ConcurrentHashMap for thread-safe in-memory storage.
+- **Logging**: Uses SLF4J and Logback for logging.
+
+
+### Dependencies and Limitations
   
 ## Dependencies:
 
