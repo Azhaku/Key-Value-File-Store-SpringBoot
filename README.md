@@ -54,18 +54,18 @@ You can test the following API endpoints using **Postman** or **curl**:
 - **Delete Key-Value Pair**: `DELETE /delete?key=key1`
 - **Batch Create Key-Value Pairs**: `POST /batch-create` with a JSON body containing multiple key-value pairs.
  
-### Example Commands
+### For Exterbal API tesing 
 
-# Create a key-value pair
+##### Create a key-value pair
 curl -X POST "http://localhost:8100/create?key=key1&value=value1&ttl=60"
 
-# Read a key-value pair
+##### Read a key-value pair
 curl "http://localhost:8100/read?key=key1"
 
-# Delete a key-value pair
+##### Delete a key-value pair
 curl -X DELETE "http://localhost:8100/delete?key=key1"
 
-# batch create
+##### batch create
 curl -X POST "http://localhost:8100/batch-create" -H "Content-Type: application/json" -d '{
   "key1": {"value": "value1", "ttl": 60},
   "key2": {"value": "value2", "ttl": 120}
