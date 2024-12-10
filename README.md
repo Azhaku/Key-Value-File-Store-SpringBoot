@@ -2,28 +2,27 @@
 
 ## Overview
 
-This project implements a **Key-Value Data Store** service with the ability to persist data and support optional expiration (TTL). Built using **Spring Boot**, the service allows for operations such as creating, reading, deleting, and batch inserting key-value pairs. It uses a JSON file for data persistence and handles TTL to automatically remove expired entries.
+This project implements a **Key-Value Data Store** service with the ability to persist data and support optional expiration (TTL). Built using **Spring Boot**, the service supports CRUD operations (Create, Read, Update, Delete), batch inserting key-value pairs, and TTL (Time-To-Live) functionality. The data is persisted in a JSON file, and expired entries are automatically removed based on TTL.
 
 ## Features
 
 - **Create**: Add a new key-value pair with an optional TTL (time-to-live).
-- **Read**: Retrieve the value for a given key.
-- **Delete**: Remove a key-value pair.
-- **Batch Create**: Add multiple key-value pairs in one operation.
-- **TTL Support**: Key-value pairs can expire after a defined TTL.
-- **Persistence**: Data is saved to and loaded from a JSON file, ensuring persistence across application restarts.
-
-
-
-
-
+- **Read**: Retrieve the value associated with a given key.
+- **Delete**: Remove a key-value pair from the store.
+- **Batch Create**: Add multiple key-value pairs in a single request.
+- **TTL Support**: Automatically remove key-value pairs once their TTL expires.
+- **Persistence**: Key-value pairs are saved to and loaded from a JSON file to persist data across application restarts.
 
 ## Setup and Running the Project
 
 ### Prerequisites
 
-- **Java 8+**
+- **Java 17+**
 - **Maven**
+
+### Clone the Repository
+
+To get started, clone the repository to your local machine:
 
 ### Clone the repository
 
@@ -64,7 +63,13 @@ curl -X POST "http://localhost:8100/create?key=key1&value=value1&ttl=60"
 curl "http://localhost:8100/read?key=key1"
 
 # Delete a key-value pair
- curl -X DELETE "http://localhost:8100/delete?key=key1"
+curl -X DELETE "http://localhost:8100/delete?key=key1"
+
+# batch create
+curl -X POST "http://localhost:8100/batch-create" -H "Content-Type: application/json" -d '{
+  "key1": {"value": "value1", "ttl": 60},
+  "key2": {"value": "value2", "ttl": 120}
+}'
 
 
 
@@ -86,6 +91,14 @@ curl "http://localhost:8100/read?key=key1"
 - Spring Boot
 - Gson (for JSON serialization)
 - SLF4J and Logback (for logging)
+
+## Limitations
+- ##### File Permissions:
+  Ensure the application has the appropriate write permissions for the kvstore.json file.
+- ##File Path:
+   The default file path for the data store is kvstore.json, but this can be configured in application.properties.
+- ## Concurrency Control:
+  The application uses ConcurrentHashMap for in-memory storage. However, it may not fully cover all potential race conditions in more complex scenarios.
 
 Operating System Compatibility: Works on Windows, Linux, and macOS.
 
